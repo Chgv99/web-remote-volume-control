@@ -106,8 +106,24 @@
         <script type="application/javascript">
             function asyncVolume(e) {
                 console.log(e.id);
+
                 var xhr = new XMLHttpRequest();
                 xhr.open("POST", "/" + e.id, true);
+                xhr.send();
+
+                xhr = new XMLHttpRequest();
+                xhr.open("GET", "/" + e.id, true);
+                xhr.onreadystatechange = function(){
+                    if (xhr.readyState == 4){ //finished
+                        if (xhr.status == 200) { //found
+                            document.getElementById("volume").innerHTML = xhr.responseText;
+                        } else {
+                            document.getElementById("volume").innerHTML = "ERROR";
+                        }
+                    } else {
+                        document.getElementById("volume").innerHTML = "loading...";
+                    }
+                }
                 xhr.send();
                 //document.getElementById("volume").innerHTML = "test";
                 return false;
