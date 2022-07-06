@@ -112,7 +112,7 @@
                 xhr.send();
 
                 xhr = new XMLHttpRequest();
-                xhr.open("GET", "/" + e.id, true);
+                xhr.open("GET", "/get-volume", true);
                 xhr.onreadystatechange = function(){
                     if (xhr.readyState == 4){ //finished
                         if (xhr.status == 200) { //found

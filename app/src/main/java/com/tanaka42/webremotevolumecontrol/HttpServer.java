@@ -20,6 +20,7 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
+import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -175,6 +176,7 @@ public class HttpServer extends Thread {
                         String[] h1 = header[0].split(" ");
 
                         String requestedFile = "";
+                        Boolean isFile = true;
 
                         if (h1.length > 1) {
                             final String requestLocation = h1[1];
@@ -182,15 +184,18 @@ public class HttpServer extends Thread {
                             status_code = "200";
 
                             switch (requestLocation) {
+                                case "/get-volume":
+                                    isFile = false;
+                                    currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+                                    System.out.println("current volume: " + currentVolume);
+                                    content_type = "text/plain";
+                                    //response_type = "text";
+                                    break;
                                 case "/volume-up":
                                     audioManager.adjustVolume(AudioManager.ADJUST_RAISE, AudioManager.FLAG_PLAY_SOUND);
-                                    currentVolume = audio.getStreamVolume(AudioManager.STREAM_MUSIC);
-                                    String server_ip = socket.getLocalAddress().getHostAddress();
-                                    HttpURLConnection conn = (HttpURLConnection) new URL("http://" + server_ip + "/connect.php?param1=value1&param2=value2").openConnection();
                                     break;
                                 case "/volume-down":
                                     audioManager.adjustVolume(AudioManager.ADJUST_LOWER, AudioManager.FLAG_PLAY_SOUND);
-                                    currentVolume = audio.getStreamVolume(AudioManager.STREAM_MUSIC);
                                     break;
                                 case "/volume-up.png":
                                 case "/volume-down.png":
@@ -210,11 +215,17 @@ public class HttpServer extends Thread {
                         }
 
                         byte[] buffer = new byte[0];
-                        if (!requestedFile.isEmpty()) {
-                            InputStream fileStream = context.getAssets().open(requestedFile, AssetManager.ACCESS_BUFFER);
-                            int size = fileStream.available();
-                            buffer = new byte[size];
-                            int readResult = fileStream.read(buffer);
+                        if (isFile){
+                            if (!requestedFile.isEmpty()) {
+                                InputStream fileStream = context.getAssets().open(requestedFile, AssetManager.ACCESS_BUFFER);
+                                int size = fileStream.available();
+                                buffer = new byte[size];
+                                int readResult = fileStream.read(buffer);
+                            }
+                        } else {
+                            String volume = currentVolume + "";
+                            buffer = volume.getBytes();
+                            //int readResult = fileStream.read(buffer);
                         }
                         writeResponse(out, buffer.length + "", buffer, status_code, content_type);
                     }
@@ -245,6 +256,10 @@ public class HttpServer extends Thread {
             pw.append("\r\n");
             pw.flush();
             switch (content_type) {
+                case "text/plain":
+                    //out.writeInt(currentVolume);
+                    pw.append(new String(data));
+                    break;
                 case "text/html":
                     pw.append(new String(data));
                     break;
