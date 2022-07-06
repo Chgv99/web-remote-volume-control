@@ -141,6 +141,8 @@ public class HttpServer extends Thread {
         private String content_type = "";
         private String status_code;
 
+        private int currentVolume;
+
         public ClientThread(Socket clientSocket) {
             this.socket = clientSocket;
         }
@@ -182,9 +184,13 @@ public class HttpServer extends Thread {
                             switch (requestLocation) {
                                 case "/volume-up":
                                     audioManager.adjustVolume(AudioManager.ADJUST_RAISE, AudioManager.FLAG_PLAY_SOUND);
+                                    currentVolume = audio.getStreamVolume(AudioManager.STREAM_MUSIC);
+                                    String server_ip = socket.getLocalAddress().getHostAddress();
+                                    HttpURLConnection conn = (HttpURLConnection) new URL("http://" + server_ip + "/connect.php?param1=value1&param2=value2").openConnection();
                                     break;
                                 case "/volume-down":
                                     audioManager.adjustVolume(AudioManager.ADJUST_LOWER, AudioManager.FLAG_PLAY_SOUND);
+                                    currentVolume = audio.getStreamVolume(AudioManager.STREAM_MUSIC);
                                     break;
                                 case "/volume-up.png":
                                 case "/volume-down.png":
