@@ -1,3 +1,10 @@
+## TODO
+
+- [x] Implement volume indicator
+- [ ] Add option to choose preferred sound stream
+- [ ] Finish implementing slider
+- [ ] Fix increase-decrease
+
 # AndroidApp-WebRemoteVolumeControl
 Adjust sound volume of your Android device remotely from any device that has a web browser, Android or not.  
 Therefore, this also includes non-Android devices such as Apple or Microsoft devices, maybe televisions or even maybe watches if these things have web browsers.  
