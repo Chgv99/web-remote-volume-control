@@ -6,38 +6,102 @@
         <style type="text/css">
 			body {
 				background-color: darkgray;
+				font-family: Helvetica;
+				color: #2085ef;
 			}
-			
-            .box {
+
+			.text {
+			    display: flex;
+                align-items: center;
+                flex-direction: column;
+                justify-content: center;
+                align-content: center;
+                margin-top: 30vh;
+			}
+
+            .boxv {
                 display: flex;
                 align-items: center;
                 flex-direction: column;
                 justify-content: center;
                 align-content: center;
-                margin-top: 15vh;
-                margin-left: 22vw;
-                width: 50vw;
-
             }
 
+            .boxh {
+                display: none;
+                align-items: center;
+                justify-content: center;
+                align-content: center;
+            }
+
+            /*.boxh input {
+                margin: 1em;
+            }*/
+
             input {
+                margin: 1em;
+                padding: 0.75em;
+                font-size: 400%;
+                height: 5vh;
+                object-fit: contain;
+				border-radius: 3em;
+				background-color: gray;
+				outline: none;
+            }
+
+            input.button {
+                font-size: 100%;
+            }
+
+            /*input {
+                margin: 0.5em;
                 margin-bottom: 1em;
                 padding: 0.75em;
-                font-size: 200%;
-                height: 14vh;
+
+                height: 5vh;
                 object-fit: contain;
                 border: 1px solid black;
 				border-radius: 3em;
 				background-color: gray;
 				background: linear-gradient(#bdbdbd, #454545);
 				outline: none;
+            }*/
+
+            input[type=range] {
+                font-size: 100%;
+                width: 175px;
+                height: 8px;
+                padding: 5 0px;
+            }
+
+            input[type=range].vertical {
+                writing-mode: bt-lr; /* IE */
+                -webkit-appearance: slider-vertical; /* Chromium */
+                width: 8px;
+                height: 175px;
+                padding: 0 5px;
             }
 			
-			input:active {
+			input:active[type=image] {
 				padding: 0.8em;
 				background: none;
 				background-color: gray;
 			}
+
+			/* Medium devices (landscape tablets, 768px and up) */
+            @media only screen and (min-width: 768px) {
+                .text {
+                    margin-top: 30vh;
+                }
+
+                .boxv {
+                    display: none;
+                }
+
+                .boxh {
+                    display: flex;
+                }
+            }
         </style>
         <script type="application/javascript">
             function asyncVolume(e) {
@@ -45,14 +109,25 @@
                 var xhr = new XMLHttpRequest();
                 xhr.open("POST", "/" + e.id, true);
                 xhr.send();
+                //document.getElementById("volume").innerHTML = "test";
                 return false;
             }
         </script>
     </head>
     <body>
-    <div class="box" >
-        <input type="image" name="volume-up" id="volume-up" value="volume-up" onclick="return asyncVolume(this);" src="/volume-up.png"/>
-        <input type="image" name="volume-down" id="volume-down" value="volume-down"  onclick="return asyncVolume(this);" src="/volume-down.png" />
+    <div class="text">
+        <h3 id="volume">100%</h3>
+    </div>
+    <div class="boxv" >
+        <!--<input type="range" min="1" max="100" value="50" class="slider" id="myRange">-->
+        <input class="button" type="image" name="volume-up" id="volume-up" value="volume-up" onclick="return asyncVolume(this);" src="/volume-up.png"/>
+        <input type="range" class="vertical" min="1" max="100" value="50" class="slider" id="myRange">
+        <input class="button" type="image" name="volume-down" id="volume-down" value="volume-down"  onclick="return asyncVolume(this);" src="/volume-down.png" />
+    </div>
+    <div class="boxh" >
+        <input class="button" type="image" name="volume-up" id="volume-up" value="volume-up" onclick="return asyncVolume(this);" src="/volume-up.png"/>
+        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+        <input class="button" type="image" name="volume-down" id="volume-down" value="volume-down"  onclick="return asyncVolume(this);" src="/volume-down.png" />
     </div>
     </body>
 </html>
