@@ -4,7 +4,7 @@
 - [X] Finish implementing slider
 - [X] Fix increase-decrease
 - [X] Add option to choose preferred sound stream
-- [ ] #1
+- [ ] [#1](https://github.com/Chgv99/web-remote-volume-control/issues/1)
 - [ ] Fix interface
   - [X] App
   - [ ] Web
