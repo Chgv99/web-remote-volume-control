@@ -51,35 +51,86 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_height="wrap_content"
             android:layout_width="fill_parent"
-            android:layout_weight="0.16"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:gravity="center"
+            android:orientation="vertical">
+
             <TextView
                 android:id="@+id/textViewURL"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:gravity="center"
-                android:textSize="@dimen/url_text_size"
                 android:textColor="#000000"
-                android:layout_gravity="center" />
+                android:textSize="@dimen/url_text_size" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.16"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:layout_weight="0.11"
+            android:gravity="center"
+            android:orientation="vertical">
+
             <Button
                 android:id="@+id/buttonEnableDisable"
-                android:text="@string/enable_volume_remote_control"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:paddingHorizontal="50dp"
+                android:text="@string/enable_volume_remote_control"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Choose your preferred audio stream:"
+                android:textAlignment="center"
                 android:textColor="#000000"
-                android:layout_gravity="center" />
+                android:textColorHint="#808080" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:checkedButton="@id/rbMultimedia"
+                android:orientation="horizontal"
+                android:textAlignment="center">
+
+                <RadioButton
+                    android:id="@+id/rbMultimedia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Multimedia" />
+
+                <RadioButton
+                    android:id="@+id/rbNotifications"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:text="Notifications" />
+
+                <RadioButton
+                    android:id="@+id/rbRing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:enabled="false"
+                    android:text="Ring" />
+
+            </RadioGroup>
+
         </LinearLayout>
 
         <LinearLayout
@@ -100,19 +151,20 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.16"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:layout_weight="0.20"
+            android:gravity="center"
+            android:orientation="vertical">
+
             <Button
                 android:id="@+id/buttonClose"
-                android:text="@string/close"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:paddingHorizontal="50dp"
-                android:textColor="#000000"
-                android:layout_gravity="center" />
+                android:text="@string/close"
+                android:textColor="#000000" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

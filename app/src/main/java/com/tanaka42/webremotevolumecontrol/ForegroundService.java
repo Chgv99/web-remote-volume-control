@@ -10,7 +10,9 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.IBinder;
+import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -18,7 +20,23 @@ import androidx.core.app.NotificationManagerCompat;
 
 public class ForegroundService extends Service {
 
+    private int preferredStream;
+
     public ForegroundService() {
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId){
+        super.onStartCommand(intent, 0, startId);
+        Bundle extras = intent.getExtras();
+
+        if (extras == null){
+            Log.d("Service", "null");
+        } else {
+            Log.d("Service", "not null");
+            preferredStream = (int) extras.get("preferredStream");
+        }
+        return START_NOT_STICKY;
     }
 
     @Override
@@ -32,7 +50,7 @@ public class ForegroundService extends Service {
 
         AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
-        HttpServer httpServer = new HttpServer(audioManager, getApplicationContext());
+        HttpServer httpServer = new HttpServer(audioManager, getApplicationContext(), preferredStream);
         httpServer.start();
 
         String channelId = getString(R.string.app_name);

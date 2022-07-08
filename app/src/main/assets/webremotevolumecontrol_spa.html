@@ -109,9 +109,28 @@
                 console.log(e.id);
 
                 var xhr = new XMLHttpRequest();
-                xhr.open("POST", "/" + e.id, true);
+                xhr.open("POST", "/" + e.id, false);
                 xhr.send();
 
+                updateInterface();
+
+                //document.getElementById("volume").innerHTML = "test";
+                return false;
+            }
+            function asyncSetVolume(volume) {
+                document.getElementById("volume").innerHTML = volume + "%";
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "/set-volume", true);
+                xhr.send("volume=" + volume);
+
+                //updateInterface();
+
+                return false;
+            }
+            function updateInterfaceSlider(value){
+                document.getElementById("volume").innerHTML = value + "%";
+            }
+            function updateInterface(){
                 xhr = new XMLHttpRequest();
                 xhr.open("GET", "/get-volume", true);
                 var slider = $("#volume-slider");
@@ -123,7 +142,7 @@
                             //document.getElementByName("volume-slider").value = vol;
                             //slider.val(vol + "").slider("refresh");
                             slider.val(vol + "");
-                            slider[0].onchange();
+                            //slider[0].onchange();
                         } else {
                             document.getElementById("volume").innerHTML = "ERROR";
                         }
@@ -132,8 +151,7 @@
                     }
                 }
                 xhr.send();
-                //document.getElementById("volume").innerHTML = "test";
-                return false;
+                return;
             }
         </script>
     </head>
@@ -144,12 +162,12 @@
     <div class="boxv" >
         <!--<input type="range" min="1" max="100" value="50" class="slider" id="myRange">-->
         <input class="button" type="image" name="volume-up" id="volume-up" value="volume-up" onclick="return asyncVolume(this);" src="/volume-up.png"/>
-        <input type="range" class="vertical" min="1" max="100" value="50" class="slider" id="volume-slider">
+        <input type="range" class="vertical" min="0" max="100" value="50" class="slider" id="volume-slider" onchange="asyncSetVolume(this.value)" oninput="updateInterfaceSlider(this.value)">
         <input class="button" type="image" name="volume-down" id="volume-down" value="volume-down"  onclick="return asyncVolume(this);" src="/volume-down.png" />
     </div>
     <div class="boxh" >
         <input class="button" type="image" name="volume-up" id="volume-up" value="slider" onclick="return asyncVolume(this);" src="/volume-up.png"/>
-        <input type="range" min="1" max="100" value="50" class="slider" id="volume-slider">
+        <input type="range" min="0" max="100" value="50" class="slider" id="volume-slider">
         <input class="button" type="image" name="volume-down" id="volume-down" value="volume-down"  onclick="return asyncVolume(this);" src="/volume-down.png" />
     </div>
     </body>

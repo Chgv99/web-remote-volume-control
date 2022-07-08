@@ -9,6 +9,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.RadioGroup;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 public class StartupActivity extends Activity {
@@ -19,12 +22,19 @@ public class StartupActivity extends Activity {
     private TextView mCloseHintTextView;
     private TextView mHowToTextView;
 
+    private RadioGroup mPreferredStreamRG;
+    private RadioButton mPreferredStreamMultimedia;
+    private RadioButton mPreferredStreamNotifications;
+    private RadioButton mPreferredStreamRing;
+
     private static String mServerURL = "";
     private static String mServerIp = "";
     private static int mServerPort = 0;
     private static boolean mServerIpIsPrivate = true;
 
     private BroadcastReceiver urlUpdatedReceiver;
+
+    private int preferredStream;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +43,34 @@ public class StartupActivity extends Activity {
 
         getReadyToReceiveURLforUI();
 
-        mCloseHintTextView   = findViewById(R.id.textViewCloseWhenReady);
-        mHowToTextView       = findViewById(R.id.textViewHowTo);
-        mURLTextView         = findViewById(R.id.textViewURL);
-        mEnableDisableButton = findViewById(R.id.buttonEnableDisable);
-        mCloseButton         = findViewById(R.id.buttonClose);
+        mCloseHintTextView           = findViewById(R.id.textViewCloseWhenReady);
+        mHowToTextView               = findViewById(R.id.textViewHowTo);
+        mURLTextView                 = findViewById(R.id.textViewURL);
+        mEnableDisableButton         = findViewById(R.id.buttonEnableDisable);
+        mCloseButton                 = findViewById(R.id.buttonClose);
+
+        mPreferredStreamRG           = findViewById(R.id.radioGroup);
+        mPreferredStreamMultimedia   = findViewById(R.id.rbMultimedia);
+
+        checkPreferredStream();
+        // TODO: Buscar una mejor forma de obtener el botón seleccionado para el preferredStream
+        mPreferredStreamRG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                System.out.println("checkedId: " + checkedId);
+                switch (checkedId){
+                    case 0:
+                        preferredStream = 2;
+                        break;
+                    case 1:
+                        preferredStream = 4;
+                        break;
+                    case 2:
+                        preferredStream = 6;
+                        break;
+                }
+            }
+        });
 
         mEnableDisableButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,11 +95,33 @@ public class StartupActivity extends Activity {
         startRemoteControlService();
     }
 
+    private void checkPreferredStream(){
+        int checkedId = mPreferredStreamRG.getCheckedRadioButtonId();
+        System.out.println("checkedId: " + (checkedId + 1));
+        switch (checkedId){
+            case 0:
+                preferredStream = 2;
+                break;
+            case 1:
+                preferredStream = 4;
+                break;
+            case 2:
+                preferredStream = 6;
+                break;
+        }
+    }
+
     private void startRemoteControlService() {
         if (Build.VERSION.SDK_INT >= 26) {
-            startForegroundService(new Intent(this, ForegroundService.class));
+            //startForegroundService(new Intent(this, ForegroundService.class));
+            Intent serviceIntent = new Intent(this, ForegroundService.class);
+            serviceIntent.putExtra("preferredStream", preferredStream);
+            startForegroundService(serviceIntent);
         } else {
-            startService(new Intent(this, ForegroundService.class));
+            //startService(new Intent(this, ForegroundService.class));
+            Intent serviceIntent = new Intent(this, ForegroundService.class);
+            serviceIntent.putExtra("preferredStream", preferredStream);
+            startService(serviceIntent);
         }
         updateActivity();
     }

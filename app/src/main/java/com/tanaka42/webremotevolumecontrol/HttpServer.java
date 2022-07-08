@@ -40,10 +40,26 @@ public class HttpServer extends Thread {
     private static boolean is_a_private_ip_address = false;
     private static boolean isStart = false;
 
-    public HttpServer(final AudioManager audio, final Context ctx) {
+    private static int preferredStream;
+
+    public HttpServer(final AudioManager audio, final Context ctx, int preferredStream) {
         try {
             this.audioManager = audio;
             this.context = ctx;
+            /*switch (preferredStream){
+                case 2:
+                    this.preferredStream = AudioManager.STREAM_RING;
+                    break;
+                case 3:
+                    this.preferredStream = AudioManager.STREAM_MUSIC;
+                    break;
+                case 5:
+                    this.preferredStream = AudioManager.STREAM_NOTIFICATION;
+                    break;
+                default:
+                    throw new Exception("Preferred Stream Error");
+            }*/
+            this.preferredStream = AudioManager.STREAM_MUSIC;
         } catch (Exception er) {
             er.printStackTrace();
         }
@@ -185,17 +201,39 @@ public class HttpServer extends Thread {
 
                             switch (requestLocation) {
                                 case "/get-volume":
+                                    System.out.println("get volume" + preferredStream);
                                     isFile = false;
-                                    currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+                                    //currentVolume = audioManager.getStreamVolume((int)AudioManager.USE_DEFAULT_STREAM_TYPE);
+                                    currentVolume = audioManager.getStreamVolume(preferredStream);
                                     System.out.println("current volume: " + currentVolume);
                                     content_type = "text/plain";
                                     //response_type = "text";
                                     break;
+                                case "/set-volume":
+                                    // gather POST data
+                                    int newVolume = Integer.parseInt(header[12].substring(7));
+                                    System.out.println("set volume to " + newVolume);
+                                    int currentVolume = audioManager.getStreamVolume(preferredStream);
+                                    int maxVolume = audioManager.getStreamMaxVolume(preferredStream);
+                                    System.out.println("volume before set: " + audioManager.getStreamVolume(preferredStream));
+                                    audioManager.setStreamVolume(preferredStream, (int) (maxVolume * newVolume * 0.01), 0);
+                                    System.out.println("volume after set: " + audioManager.getStreamVolume(preferredStream));
+                                    //System.out.println("POST DATA: " + newVolume);
+                                    //System.out.println("NEW VOLUME (PERCENTAGE): " + newVolume);
+                                    //System.out.println("NEW VOLUME: " + (int) maxVolume * newVolume);
+                                    //currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+                                    content_type = "text/plain";
+                                    //response_type = "text";
+                                    break;
                                 case "/volume-up":
-                                    audioManager.adjustVolume(AudioManager.ADJUST_RAISE, AudioManager.FLAG_PLAY_SOUND);
+                                    System.out.println("volume up" + preferredStream);
+                                    //audioManager.adjustVolume(AudioManager.ADJUST_RAISE, AudioManager.FLAG_PLAY_SOUND);
+                                    audioManager.adjustStreamVolume(preferredStream, AudioManager.ADJUST_RAISE, AudioManager.FLAG_PLAY_SOUND);
                                     break;
                                 case "/volume-down":
-                                    audioManager.adjustVolume(AudioManager.ADJUST_LOWER, AudioManager.FLAG_PLAY_SOUND);
+                                    System.out.println("volume down" + preferredStream);
+                                    //audioManager.adjustVolume(AudioManager.ADJUST_LOWER, AudioManager.FLAG_PLAY_SOUND);
+                                    audioManager.adjustStreamVolume(preferredStream, AudioManager.ADJUST_LOWER, AudioManager.FLAG_PLAY_SOUND);
                                     break;
                                 case "/volume-up.png":
                                 case "/volume-down.png":
