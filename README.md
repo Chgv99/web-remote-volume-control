@@ -5,6 +5,7 @@
 - [X] Fix increase-decrease
 - [ ] Add option to choose preferred sound stream
 - [ ] Make audio update dynamically with slider drag
+- [ ] Make interface update on start/reload
 - [ ] Fix interface (web)
 - [ ] Fix interface (app)
 
