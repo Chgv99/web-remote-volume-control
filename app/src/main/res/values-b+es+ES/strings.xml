@@ -1,21 +1,20 @@
 <resources>
     <string name="app_name">Web Remote Volume Control</string>
-    <string name="close">Close</string>
-    <string name="starting">Start in progress&#8230;</string>
-    <string name="running_indicator">Running indicator</string>
-    <string name="how_to_enabled">Volume remote control is enabled. Connect to below address from another device to start controlling sound volume remotely.</string>
-    <string name="how_to_disabled">Volume remote control is disabled. You must activate it first before you can control sound volume remotely.</string>
-    <string name="close_when_ready">Remote volume control will remain accessible after you close this window.</string>
+    <string name="close">Cerrar</string>
+    <string name="starting">Inicialización en progreso&#8230;</string>
+    <string name="running_indicator">Running indicator</string> <!-- TODO: Translate -->
+    <string name="how_to_enabled">El control remoto del volumen está activado. Conéctate a la dirección de debajo desde otro dispositivo para comenzar a controlar el volumen remotamente.</string>
+    <string name="how_to_disabled">El control remoto del volumen está desactivado. Debes activarlo primero para comenzar a controlar el volumen remotamente.</string>
+    <string name="close_when_ready">El control remoto del volumen permanecerá activo incluso tras cerrar esta ventana.</string>
     <string name="ongoing_notification_title">@string/app_name</string>
-    <string name="ongoing_notification_text">Volume remote control is enabled.</string>
-    <string name="enable_volume_remote_control">Enable volume remote control</string>
-    <string name="disable_volume_remote_control">Disable volume remote control</string>
-    <string name="verify_local_network_connection">Verify that you are connected to your local network (Wifi).</string>
-    <string name="about_private_limitation">This application limits itself to local network IP addresses (192.168.*.*, 10.*.*.*, or 172.16.0.0 to 172.31.255.255).</string>
-    <string name="how_to_unable_to_find_local_address">Volume remote control is disabled. Unable to find a local network IP address.</string>
-    <string name="choose_stream">Choose your preferred audio stream:</string>
+    <string name="ongoing_notification_text">El control remoto del volumen está activado.</string>
+    <string name="enable_volume_remote_control">Activar control remoto del volumen</string>
+    <string name="disable_volume_remote_control">Desactivar control remoto del volumen</string>
+    <string name="verify_local_network_connection">Comprueba que estás conectado a una red local (WIFI).</string>
+    <string name="about_private_limitation">Esta aplicación se limita a direcciones IP de red local (192.168.*.*, 10.*.*.*, or 172.16.0.0 to 172.31.255.255).</string>
+    <string name="how_to_unable_to_find_local_address">El control remoto del volumen está desactivado. No se encontró una dirección de IP local.</string>
+    <string name="choose_stream">Elige tu fuente de audio preferida:</string>
     <string name="rb_multimedia">Multimedia</string>
-    <string name="rb_notifications">Notifications</string>
-    <string name="rb_ring">Ring</string>
-
+    <string name="rb_notifications">Notificaciones</string>
+    <string name="rb_ring">Llamadas</string>
 </resources>
