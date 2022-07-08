@@ -4,10 +4,14 @@
 - [X] Finish implementing slider
 - [X] Fix increase-decrease
 - [X] Add option to choose preferred sound stream
-- [X] Fix interface (app)
+- [ ] #1
+- [ ] Fix interface
+  - [X] App
+  - [ ] Web
 - [ ] Make audio update dynamically with slider drag
 - [ ] Make interface update on start/reload
-- [ ] Fix interface (web)
+
+<!--https://github.com/Chgv99/web-remote-volume-control/issues/1-->
 
 # AndroidApp-WebRemoteVolumeControl
 Adjust sound volume of your Android device remotely from any device that has a web browser, Android or not.  
