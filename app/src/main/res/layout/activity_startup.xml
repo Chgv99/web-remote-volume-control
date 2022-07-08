@@ -95,7 +95,7 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Choose your preferred audio stream:"
+                android:text="@string/choose_stream"
                 android:textAlignment="center"
                 android:textColor="#000000"
                 android:textColorHint="#808080" />
@@ -105,29 +105,42 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:checkedButton="@id/rbMultimedia"
+                android:dividerPadding="100dp"
                 android:orientation="horizontal"
                 android:textAlignment="center">
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="40" />
 
                 <RadioButton
                     android:id="@+id/rbMultimedia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Multimedia" />
+                    android:layout_weight="10"
+                    android:text="@string/rb_multimedia" />
 
                 <RadioButton
                     android:id="@+id/rbNotifications"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:enabled="false"
-                    android:text="Notifications" />
+                    android:layout_weight="10"
+                    android:enabled="true"
+                    android:text="@string/rb_notifications" />
 
                 <RadioButton
                     android:id="@+id/rbRing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:enabled="false"
-                    android:text="Ring" />
+                    android:layout_weight="10"
+                    android:enabled="true"
+                    android:text="@string/rb_ring" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="40" />
 
             </RadioGroup>
 

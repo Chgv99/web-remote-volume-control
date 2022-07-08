@@ -59,7 +59,9 @@ public class HttpServer extends Thread {
                 default:
                     throw new Exception("Preferred Stream Error");
             }*/
-            this.preferredStream = AudioManager.STREAM_MUSIC;
+            //this.preferredStream = AudioManager.STREAM_MUSIC;
+            this.preferredStream = preferredStream;
+            System.out.println("selected preferred stream: " + preferredStream);
         } catch (Exception er) {
             er.printStackTrace();
         }

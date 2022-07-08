@@ -35,7 +35,15 @@ public class ForegroundService extends Service {
         } else {
             Log.d("Service", "not null");
             preferredStream = (int) extras.get("preferredStream");
+            System.out.println("extras get preferred stream: " + preferredStream);
         }
+
+        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+
+        System.out.println("before http server: " + preferredStream);
+        HttpServer httpServer = new HttpServer(audioManager, getApplicationContext(), preferredStream);
+        httpServer.start();
+
         return START_NOT_STICKY;
     }
 
@@ -48,10 +56,9 @@ public class ForegroundService extends Service {
     public void onCreate() {
         //System.out.println("Starting service ...");
 
-        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        //audiomngr
 
-        HttpServer httpServer = new HttpServer(audioManager, getApplicationContext(), preferredStream);
-        httpServer.start();
+        //http
 
         String channelId = getString(R.string.app_name);
 

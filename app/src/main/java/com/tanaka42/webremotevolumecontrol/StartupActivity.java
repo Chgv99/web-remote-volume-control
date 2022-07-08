@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -52,23 +53,14 @@ public class StartupActivity extends Activity {
         mPreferredStreamRG           = findViewById(R.id.radioGroup);
         mPreferredStreamMultimedia   = findViewById(R.id.rbMultimedia);
 
-        checkPreferredStream();
+        checkPreferredStream(mPreferredStreamRG);
         // TODO: Buscar una mejor forma de obtener el botón seleccionado para el preferredStream
         mPreferredStreamRG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                System.out.println("checkedId: " + checkedId);
-                switch (checkedId){
-                    case 0:
-                        preferredStream = 2;
-                        break;
-                    case 1:
-                        preferredStream = 4;
-                        break;
-                    case 2:
-                        preferredStream = 6;
-                        break;
-                }
+                //System.out.println("checkedId: " + checkedId);
+                checkPreferredStream(group);
+                //System.out.println("selected preferred stream: " + preferredStream);
             }
         });
 
@@ -95,19 +87,14 @@ public class StartupActivity extends Activity {
         startRemoteControlService();
     }
 
-    private void checkPreferredStream(){
-        int checkedId = mPreferredStreamRG.getCheckedRadioButtonId();
-        System.out.println("checkedId: " + (checkedId + 1));
-        switch (checkedId){
-            case 0:
-                preferredStream = 2;
-                break;
-            case 1:
-                preferredStream = 4;
-                break;
-            case 2:
-                preferredStream = 6;
-                break;
+    private void checkPreferredStream(RadioGroup group){
+        int checkedRadioButtonId = group.getCheckedRadioButtonId();
+        if (checkedRadioButtonId == R.id.rbMultimedia) {
+            preferredStream = AudioManager.STREAM_MUSIC;
+        } else if (checkedRadioButtonId == R.id.rbNotifications) {
+            preferredStream = AudioManager.STREAM_NOTIFICATION;
+        } else if (checkedRadioButtonId == R.id.rbRing) {
+            preferredStream = AudioManager.STREAM_RING;
         }
     }
 

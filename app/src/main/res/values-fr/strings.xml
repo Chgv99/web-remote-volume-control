@@ -13,4 +13,9 @@
     <string name="verify_local_network_connection">Vérifiez que vous êtes connecté·e à votre réseau local (Wifi).</string>
     <string name="about_private_limitation">Cette application se limite aux adresses IP de réseau local (192.168.*.*, 10.*.*.*, ou de 172.16.0.0 à 172.31.255.255).</string>
     <string name="how_to_unable_to_find_local_address">Le contrôle du volume à distance est désactivé. Impossible de trouver une adresse IP de réseau local.</string>
+    <!-- TODO: Translate -->
+    <string name="choose_stream">Choose your preferred audio stream:</string>
+    <string name="rb_multimedia">Multimedia</string>
+    <string name="rb_notifications">Notifications</string>
+    <string name="rb_ring">Ring</string>
 </resources>
