@@ -89,7 +89,21 @@
 			}
 
 			/* Medium devices (landscape tablets, 768px and up) */
-            @media only screen and (min-width: 768px) {
+            /*@media only screen and (min-width: 500px) {
+                .text {
+                    margin-top: 30vh;
+                }
+
+                .boxv {
+                    display: none;
+                }
+
+                .boxh {
+                    display: flex;
+                }
+            }*/
+
+            @media only screen and (min-aspect-ratio: 4/3) {
                 .text {
                     margin-top: 30vh;
                 }
@@ -133,7 +147,8 @@
             function updateInterface(){
                 xhr = new XMLHttpRequest();
                 xhr.open("GET", "/get-volume", true);
-                var slider = $("#volume-slider");
+                var sliderv = $("#volume-slider-v");
+                var sliderh = $("#volume-slider-h");
                 xhr.onreadystatechange = function(){
                     if (xhr.readyState == 4){ //finished
                         if (xhr.status == 200) { //found
@@ -141,7 +156,8 @@
                             document.getElementById("volume").innerHTML = vol + "%";
                             //document.getElementByName("volume-slider").value = vol;
                             //slider.val(vol + "").slider("refresh");
-                            slider.val(vol + "");
+                            sliderv.val(vol + "");
+                            sliderh.val(vol + "");
                             //slider[0].onchange();
                         } else {
                             document.getElementById("volume").innerHTML = "ERROR";
@@ -162,13 +178,14 @@
     <div class="boxv" >
         <!--<input type="range" min="1" max="100" value="50" class="slider" id="myRange">-->
         <input class="button" type="image" name="volume-up" id="volume-up" value="volume-up" onclick="return asyncVolume(this);" src="/volume-up.png"/>
-        <input type="range" class="vertical" min="0" max="100" value="50" class="slider" id="volume-slider" onchange="asyncSetVolume(this.value)" oninput="updateInterfaceSlider(this.value)">
+        <input type="range" class="vertical" min="0" max="100" value="50" class="slider" id="volume-slider-v" onchange="asyncSetVolume(this.value)" oninput="updateInterfaceSlider(this.value)">
         <input class="button" type="image" name="volume-down" id="volume-down" value="volume-down"  onclick="return asyncVolume(this);" src="/volume-down.png" />
     </div>
     <div class="boxh" >
-        <input class="button" type="image" name="volume-up" id="volume-up" value="slider" onclick="return asyncVolume(this);" src="/volume-up.png"/>
-        <input type="range" min="0" max="100" value="50" class="slider" id="volume-slider">
         <input class="button" type="image" name="volume-down" id="volume-down" value="volume-down"  onclick="return asyncVolume(this);" src="/volume-down.png" />
+        <input type="range" min="0" max="100" value="50" class="slider" id="volume-slider-h" onchange="asyncSetVolume(this.value)" oninput="updateInterfaceSlider(this.value)">
+        <input class="button" type="image" name="volume-up" id="volume-up" value="volume-up" onclick="return asyncVolume(this);" src="/volume-up.png"/>
+
     </div>
     </body>
 </html>
