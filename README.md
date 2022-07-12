@@ -31,17 +31,23 @@ The implementation of these last features depends on Android's API, so that mean
 
 ## TODO
 
+<details>
+    <summary>Done</summary>
+  
 - [x] Implement volume indicator
 - [X] Finish implementing slider
 - [X] Fix increase-decrease
+
+</details>
+    
 - [ ] Add option to choose preferred sound stream
-  - [ ] [#1](https://github.com/Chgv99/web-remote-volume-control/issues/1)
-- [ ] Fix interface
-  - [X] App
-  - [ ] Web
+  - [ ] [#1](https://github.com/Chgv99/web-remote-volume-control/issues/1) awaiting crash tests
 - [ ] Make audio update dynamically with slider drag
 - [ ] Make interface update on start/reload
 - [ ] Mute button
+- [ ] Fix interface distribution
+  - [X] App
+  - [ ] Web
 
 ## How To
 
