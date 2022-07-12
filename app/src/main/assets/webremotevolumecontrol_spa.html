@@ -119,6 +119,9 @@
         </style>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script type="application/javascript">
+            function onLoad() {
+                updateInterface();
+            }
             function asyncVolume(e) {
                 console.log(e.id);
 
@@ -131,6 +134,10 @@
                 //document.getElementById("volume").innerHTML = "test";
                 return false;
             }
+            function onSliderDrag(value){
+                asyncSetVolume(value);
+                updateInterfaceSlider(value);
+            }
             function asyncSetVolume(volume) {
                 document.getElementById("volume").innerHTML = volume + "%";
                 var xhr = new XMLHttpRequest();
@@ -141,6 +148,7 @@
 
                 return false;
             }
+
             function updateInterfaceSlider(value){
                 document.getElementById("volume").innerHTML = value + "%";
             }
@@ -169,6 +177,7 @@
                 xhr.send();
                 return;
             }
+            window.onload = onLoad;
         </script>
     </head>
     <body>
@@ -178,7 +187,8 @@
     <div class="boxv" >
         <!--<input type="range" min="1" max="100" value="50" class="slider" id="myRange">-->
         <input class="button" type="image" name="volume-up" id="volume-up" value="volume-up" onclick="return asyncVolume(this);" src="/volume-up.png"/>
-        <input type="range" class="vertical" min="0" max="100" value="50" class="slider" id="volume-slider-v" onchange="asyncSetVolume(this.value)" oninput="updateInterfaceSlider(this.value)">
+        <!--<input type="range" class="vertical" min="0" max="100" value="50" class="slider" id="volume-slider-v" onchange="asyncSetVolume(this.value)" oninput="updateInterfaceSlider(this.value)">-->
+        <input type="range" class="vertical" min="0" max="100" value="50" class="slider" id="volume-slider-v" onchange="" oninput="onSliderDrag(this.value)">
         <input class="button" type="image" name="volume-down" id="volume-down" value="volume-down"  onclick="return asyncVolume(this);" src="/volume-down.png" />
     </div>
     <div class="boxh" >

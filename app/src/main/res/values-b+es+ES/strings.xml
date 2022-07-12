@@ -13,7 +13,7 @@
     <string name="verify_local_network_connection">Comprueba que estás conectado a una red local (WIFI).</string>
     <string name="about_private_limitation">Esta aplicación se limita a direcciones IP de red local (192.168.*.*, 10.*.*.*, or 172.16.0.0 to 172.31.255.255).</string>
     <string name="how_to_unable_to_find_local_address">El control remoto del volumen está desactivado. No se encontró una dirección de IP local.</string>
-    <string name="choose_stream">Elige tu fuente de audio preferida:</string>
+    <string name="choose_stream">Elige tu fuente de audio preferida (necesita reinicio del control remoto):</string>
     <string name="rb_multimedia">Multimedia</string>
     <string name="rb_notifications">Notificaciones</string>
     <string name="rb_ring">Llamadas</string>
