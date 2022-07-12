@@ -25,6 +25,7 @@ In the far future, it's been planned to implement a couple more functions that w
 - Play/Pause button (as if you were using bluetooth headphones)
 - Skip button
 - Show multimedia playing
+- Brightness control
 
 The implementation of these last features depends on Android's API, so that means that these functions are bound to change, or might not be implemented.
 
