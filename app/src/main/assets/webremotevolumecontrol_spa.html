@@ -177,23 +177,30 @@
                 xhr.send();
                 return;
             }
+            function test(){
+                document.getElementById("volume").innerHTML = "test";
+            }
+            function updateInterfaceDelay(){
+                setTimeout(test, 1000);
+            }
             window.onload = onLoad;
         </script>
     </head>
     <body>
     <div class="text">
-        <h3 id="volume"></h3> <!-- TODO: Update on start -->
+        <h3 id="volume"></h3>
     </div>
     <div class="boxv" >
         <!--<input type="range" min="1" max="100" value="50" class="slider" id="myRange">-->
         <input class="button" type="image" name="volume-up" id="volume-up" value="volume-up" onclick="return asyncVolume(this);" src="/volume-up.png"/>
         <!--<input type="range" class="vertical" min="0" max="100" value="50" class="slider" id="volume-slider-v" onchange="asyncSetVolume(this.value)" oninput="updateInterfaceSlider(this.value)">-->
-        <input type="range" class="vertical" min="0" max="100" value="50" class="slider" id="volume-slider-v" onchange="" oninput="onSliderDrag(this.value)">
+        <input type="range" class="vertical" min="0" max="100" value="50" class="slider" id="volume-slider-v" oninput="onSliderDrag(this.value)" onmouseup="updateInterface()" ontouchend="updateInterface()">
         <input class="button" type="image" name="volume-down" id="volume-down" value="volume-down"  onclick="return asyncVolume(this);" src="/volume-down.png" />
     </div>
     <div class="boxh" >
         <input class="button" type="image" name="volume-down" id="volume-down" value="volume-down"  onclick="return asyncVolume(this);" src="/volume-down.png" />
-        <input type="range" min="0" max="100" value="50" class="slider" id="volume-slider-h" onchange="asyncSetVolume(this.value)" oninput="updateInterfaceSlider(this.value)">
+        <!--<input type="range" min="0" max="100" value="50" class="slider" id="volume-slider-h" onchange="asyncSetVolume(this.value)" oninput="updateInterfaceSlider(this.value)">-->
+        <input type="range" class="horizontal" min="0" max="100" value="50" class="slider" id="volume-slider-h" oninput="onSliderDrag(this.value)" onmouseup="updateInterface()" ontouchend="updateInterface()">
         <input class="button" type="image" name="volume-up" id="volume-up" value="volume-up" onclick="return asyncVolume(this);" src="/volume-up.png"/>
 
     </div>
