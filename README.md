@@ -37,19 +37,23 @@ The implementation of these last features depends on Android's API, so that mean
 - [x] Implement volume indicator
 - [X] Finish implementing slider
 - [X] Fix increase-decrease
+- [X] Make volume indicator and slider update on slider release
+- [X] Make volume indicator and slider update on page load/reload
 
 </details>
-    
+
 - [ ] Add option to choose preferred sound stream
   - [ ] [#1](https://github.com/Chgv99/web-remote-volume-control/issues/1) awaiting crash tests
 - [ ] Make audio update dynamically with slider drag
-- [ ] Make interface update on start/reload
+- [ ] Make volume indicator and slider update with volume changes on origin device
 - [ ] Mute button
 - [ ] Fix interface distribution
   - [X] App
   - [ ] Web
 
 ## How To
+
+This document is incomplete for the moment. For a quick _how to use_ I encourage you to read the [original instructions](https://github.com/tanaka42/androidapp-webremotevolumecontrol), which will do for the most part.
 
 <!--https://github.com/Chgv99/web-remote-volume-control/issues/1-->
 
