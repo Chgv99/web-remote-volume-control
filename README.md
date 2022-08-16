@@ -1,14 +1,64 @@
+<h1 align="center">
+  <!--<img width="30%" src="img/banner.png">
+  <br>-->
+  Web Remote Volume Control
+</h1>
+<p align="center">
+ <b>An app that allows you to adjust sound volume of your Android device from any device that has a web browser.</b>
+</p>
+<p align="center">
+ <img src="https://img.shields.io/badge/Project-WIP-orange"> <img src="https://img.shields.io/badge/Documentation-Outdated-orange"> <img src="https://img.shields.io/github/issues/Chgv99/web-remote-volume-control">
+</p>
+<p align="center">
+ <a href="https://github.com/Chgv99/Scheduler/blob/main/README.md#todo">TODO</a> • <a href="https://github.com/Chgv99/Scheduler/blob/main/README.md#how-to">How to</a>
+</p>
+
+This project is a fork of [Tanaka42's WebRemoteVolumeControl](https://github.com/tanaka42/androidapp-webremotevolumecontrol) that implements a couple more features such as:
+- Volume slider
+- Volume percentage indicator
+
+In the near future, the app will:
+- Update the volume indicator and slider dynamically (even if you turn up the volume from the main device itself)
+- Allow mute
+
+In the far future, it's been planned to implement a couple more functions that will give the app a "detached multimedia controller" touch, such as:
+- Play/Pause button (as if you were using bluetooth headphones)
+- Skip button
+- Show multimedia playing
+- Brightness control
+
+The implementation of these last features depends on Android's API, so that means that these functions are bound to change, or might not be implemented.
+
 ## TODO
 
+<details>
+    <summary>Done</summary>
+  
 - [x] Implement volume indicator
 - [X] Finish implementing slider
 - [X] Fix increase-decrease
+
+</details>
+    
 - [ ] Add option to choose preferred sound stream
+  - [ ] [#1](https://github.com/Chgv99/web-remote-volume-control/issues/1) awaiting crash tests
 - [ ] Make audio update dynamically with slider drag
 - [ ] Make interface update on start/reload
-- [ ] Fix interface (web)
-- [ ] Fix interface (app)
+- [ ] Mute button
+- [ ] Fix interface distribution
+  - [X] App
+  - [ ] Web
 
+## How To
+
+<!--https://github.com/Chgv99/web-remote-volume-control/issues/1-->
+
+---
+<p align="center">
+ Contact me on <a href="https://twitter.com/ChgvCode">Twitter</a>
+</p>
+
+<!--
 # AndroidApp-WebRemoteVolumeControl
 Adjust sound volume of your Android device remotely from any device that has a web browser, Android or not.  
 Therefore, this also includes non-Android devices such as Apple or Microsoft devices, maybe televisions or even maybe watches if these things have web browsers.  
@@ -60,3 +110,4 @@ I did not include a Mute button or a Slider input at the moment because to do so
 This is my very first GitHub experience, and my very first Android experience too, any advice or remark is welcome.
 
 I did build that app because I often use an Android tablet, connected to an audio sound system (HiFi, an old one that does not have a remote controller), to play music, and I wanted to be able to adjust sound remotely from an iPhone, in a simple way (I mean not by using a Teamviewer/Vysor like thing).
+-->
