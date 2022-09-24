@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.media.AudioManager;
+import android.media.session.MediaController;
+import android.media.session.MediaSessionManager;
 import android.os.Bundle;
 
 import java.io.BufferedWriter;
@@ -23,6 +25,7 @@ import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 import java.util.regex.Matcher;
@@ -34,6 +37,7 @@ import static java.lang.Integer.parseInt;
 public class HttpServer extends Thread {
     private static ServerSocket serverSocket;
     private AudioManager audioManager;
+    private MediaSessionManager mediaSessionManager;
     private Context context;
     private static String server_ip;
     private static int server_port = 9000;
@@ -42,10 +46,18 @@ public class HttpServer extends Thread {
 
     private static int preferredStream;
 
-    public HttpServer(final AudioManager audio, final Context ctx, int preferredStream) {
+    public void OnActiveSessionsChangedListener (){
+
+    }
+
+    public HttpServer(final MediaSessionManager media, AudioManager audio, final Context ctx, int preferredStream) {
         try {
+            this.mediaSessionManager = media;
             this.audioManager = audio;
             this.context = ctx;
+
+            mediaSessionManager.addOnActiveSessionsChangedListener(MediaSessionManager.OnActiveSessionsChangedListener(), null);
+
             /*switch (preferredStream){
                 case 2:
                     this.preferredStream = AudioManager.STREAM_RING;
@@ -161,6 +173,7 @@ public class HttpServer extends Thread {
         private String status_code;
 
         private int currentVolume;
+        private List<MediaController> mediaControllers;
 
         public ClientThread(Socket clientSocket) {
             this.socket = clientSocket;
@@ -202,6 +215,8 @@ public class HttpServer extends Thread {
                             status_code = "200";
 
                             switch (requestLocation) {
+                                case "/get-media":
+                                    //currentMedia =
                                 case "/get-volume":
                                     System.out.println("get volume" + preferredStream);
                                     isFile = false;

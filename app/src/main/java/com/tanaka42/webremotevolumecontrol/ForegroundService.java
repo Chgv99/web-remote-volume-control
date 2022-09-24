@@ -39,6 +39,7 @@ public class ForegroundService extends Service {
         }
 
         AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        //MediaSessionManager mediaSessionManager =
 
         System.out.println("before http server: " + preferredStream);
         HttpServer httpServer = new HttpServer(audioManager, getApplicationContext(), preferredStream);
