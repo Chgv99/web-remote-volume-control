@@ -10,7 +10,7 @@
  <img src="https://img.shields.io/badge/Project-WIP-orange"> <img src="https://img.shields.io/badge/Documentation-Outdated-orange"> <img src="https://img.shields.io/github/issues/Chgv99/web-remote-volume-control">
 </p>
 <p align="center">
- <a href="https://github.com/Chgv99/web-remote-volume-control/blob/master/README.md#todo">TODO</a> • <a href="https://github.com/Chgv99/web-remote-control/blob/main/README.md#how-to">How to</a>
+ <a href="https://github.com/Chgv99/web-remote-volume-control/blob/master/README.md#todo">TODO</a> • <a href="https://github.com/Chgv99/web-remote-volume-control/blob/master/README.md#how-to">How to</a>
 </p>
 
 This project is a fork of [Tanaka42's WebRemoteVolumeControl](https://github.com/tanaka42/androidapp-webremotevolumecontrol) that implements a couple more features such as:
